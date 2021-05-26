@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autos la FET</title>
+</head>
+
+<body>
+            <a class="btn btn-primary" href="/admin/admin" role="button">Volver</a>
+
+<div class="container">
+    <div class="col-xl-12 col-lg-12">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+            <center><h1>Productos</h1></center>        
+                    <center> <a href="" class="btn btn-block btn-info" data-toggle="modal"
+                            data-target="#modificaUsuarios">Agregar</a></center>
+                    <div class="modal" id="modificaUsuarios">
+                        <div class="modal-dialog">
+                            <div class="modal-content"> 
+                               
+                                <form action="/product/agregar" method="post" >
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Agregar</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <h5>
+                                            <center> Agregar datos </center>
+                                        </h5>
+                                        <div class="form-group">
+                                            <label for="nombre_ropa">Nombres del producto:</label>
+                                            <input type="text" value="{{nombre_producto}}" class="form-control"
+                                                 id="" name="nombre_producto">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cantidad">Codigo</label>
+                                            <input type="text" value="{{Codigo}}" class="form-control"
+                                                 id="" name="Codigo">
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <label for="precio_venta">Categoria</label>
+                                            <input type="number" value="{{id_categoria}}" class="form-control"
+                                                 id="" name="id_categoria">
+                                        </div>
+
+                                            -->
+                                             <div>
+                                           <label >Categoria del producto:</label>
+
+                                                <select name="id_categoria" id="" class="form-select">
+                                                    <option selected>Tipos</option>
+
+                                                    {{#each categorias}}
+
+                                                    <option value="{{id_categoria}}">{{categoria_producto }}
+
+                                                    </option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+
+
+
+
+
+                                        <div class="form-group">
+                                            <label for="precio_venta">Precio Unitario</label>
+                                            <input type="number" value="{{precio_unitario}}" class="form-control"
+                                                 id="" name="precio_unitario">
+                                        </div>
+                                               <div class="form-group">
+                                            <label for="precio_venta">Total del producto:</label>
+                                            <input type="number" value="{{total_stock}}" class="form-control"
+                                                 id="" name="total_stock">
+                                        </div>
+                                        <div class="form-floating">
+                                            <label for="precio_venta">descripcion</label>
+                                            <textarea  type="text"  style="height: 100px"   value="{{descripcion}}" class="form-control"
+                                                placeholder="" id="" name="descripcion"></textarea> 
+                                        </div>
+                                       
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Agregar</button>
+                                        </div>
+                                </form>
+
+                            </div>
+
+                        </div>
+                        <tr>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 col-md-8 col-lg-8">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Nombre del producto</th>
+                                                    <th>Codigo</th>
+                                                    <th>Categoria</th>
+                                                    <th>Precio unidad</th>
+                                                    <th>Total stock</th>
+                                                    <th>descripcion</th>
+                                                    <th>Imagen del Producto</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each todoproductos}}
+                                                <tr>
+                                                    <td scope="row">{{id_productos}} </td>
+                                                    <td>{{nombre_producto}} </td>
+                                                    <td>{{Codigo}}</td>
+                                                    <td>{{categoria_producto}}</td>
+                                                    <td>{{precio_unitario}}</td>
+                                                    <td>{{total_stock}}</td>
+                                                    <td>{{descripcion}}</td>
+                                                    <td>{{url_img}}</td>      
+                                                  <td>
+                                                 <!---   <a href="delete/{{id_ropa}}" class="">Eliminar</a>-->
+                                                    <a href="" class="btn btn-danger" data-toggle="modal" data-target="#eliminaUsuario{{id_productos}}">Eliminar</a>
+                                                    <div class="modal" id="eliminaUsuario{{id_productos}}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Seguro quiere Elimiar El produto </h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                            {{nombre_producto}} 
+                                                            <br>
+                                                            {{Codigo}}
+                                              
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <a href="Eliminar/{{id_productos}}" class="btn btn-danger">Eliminar</a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        <a href="" class="btn btn-info" data-toggle="modal" data-target="#modificaUsuario{{id_productos}}">Modificar</a> 
+                                                    <div class="modal" id="modificaUsuario{{id_productos}}">
+                                                   <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                <form action="/product/modificar1/{{id_productos}}" method="POST">
+
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Modal Heading</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <div class="modal-body">
+                                            
+                                                    <h5><center> Modificar datos </center></h5>
+                                  <div class="form-group">
+                                            <label for="nombre_ropa">Nombres del producto:</label>
+                                            <input type="text" value="{{nombre_producto}}" class="form-control"
+                                                 id="" name="nombre_producto">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="cantidad">Codigo</label>
+                                            <input type="text" value="{{Codigo}}" class="form-control"
+                                                 id="" name="Codigo">
+                                        </div>
+                                            
+
+
+                                        <div class="form-group">
+                                            <label for="precio_venta">Precio Unitario</label>
+                                            <input type="number" value="{{precio_unitario}}" class="form-control"
+                                                 id="" name="precio_unitario">
+                                        </div>
+                                               <div class="form-group">
+                                            <label for="precio_venta">Total del producto:</label>
+                                            <input type="number" value="{{total_stock}}" class="form-control"
+                                                 id="" name="total_stock">
+                                        </div>
+                                        <div class="form-floating">
+                                            <label for="precio_venta">descripcion</label>
+                                            <textarea  type="text"  style="height: 100px"   value="{{descripcion}}" class="form-control"
+                                                placeholder="" id="" name="descripcion"></textarea> 
+                                        </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Modificar</button>
+                                                </div>
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    </div>
+                      
+
+
+                                                            </td>  
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    </div>
+        </div>
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+
+</body>
+</div>
+
+</html>
